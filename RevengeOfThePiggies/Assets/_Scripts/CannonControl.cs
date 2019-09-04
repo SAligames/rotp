@@ -4,31 +4,53 @@ using UnityEngine;
 
 public class CannonControl : MonoBehaviour
 {
-    public GameObject piggyPlayer; //this is a reference to the player object
-    public float strength = 500; //the scalar that defines the strength of the pig
+    public Rigidbody2D piggyRB; //this is a reference to the player object
+
+    public Camera mainCamera;
+    private Vector3 direction;
+    public float strength = 200; //the scalar that defines the strength of the cannon
+    const int Max_Angle = 80;
+    const int Min_Angle = 5;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f);
-        Vector3 mousePositionInWorldCoordinates = Camera.main.ScreenToWorldPoint(mousePosition);
-        Vector3 direction = mousePositionInWorldCoordinates - transform.position;
+
+        Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, -mainCamera.transform.position.z);
+        
+        Vector3 mousePositionInWorldCoordinates = mainCamera.ScreenToWorldPoint(mousePosition);
+        
+        direction = mousePositionInWorldCoordinates - transform.position;
 
         float alpha = Mathf.Acos(Vector3.Dot(Vector3.right, direction.normalized))*Mathf.Rad2Deg;
-        Debug.Log(alpha);
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, alpha));
-
-        if(Input.GetMouseButtonUp(0))
+        
+        if(alpha<Max_Angle && alpha>Min_Angle && direction.y>0)
         {
-            piggyPlayer.transform.parent = null;
-            piggyPlayer.GetComponent<Rigidbody2D>().gravityScale = 1;
-            piggyPlayer.GetComponent<Rigidbody2D>().AddForce(direction * strength);
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, alpha));
+
         }
+
+
+    }
+
+    void FixedUpdate()
+    {
+        if (Input.GetButtonUp("Fire1"))
+        {
+            piggyRB.transform.parent = null;
+            piggyRB.gravityScale = 1;
+            piggyRB.AddForce(direction * strength);
+        }
+    }
+
+    void Run()
+    {
+
     }
 }
