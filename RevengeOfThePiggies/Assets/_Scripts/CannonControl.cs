@@ -8,7 +8,7 @@ public class CannonControl : MonoBehaviour
 
     public Camera mainCamera;
     private Vector3 direction;
-    public float strength = 200; //the scalar that defines the strength of the cannon
+    public float strength = 50; //the scalar that defines the strength of the cannon
     const int Max_Angle = 80;
     const int Min_Angle = 5;
     
@@ -45,7 +45,7 @@ public class CannonControl : MonoBehaviour
         {
             piggyRB.transform.parent = null;
             piggyRB.gravityScale = 1;
-            piggyRB.AddForce(direction * strength);
+            piggyRB.AddForce(direction * strength * piggyRB.mass);
         }
     }
 

@@ -6,7 +6,7 @@ public class PiggyController : MonoBehaviour
 {
     Vector3 startPosition;
     Quaternion startRotation;
-    GameObject cannon;
+    Transform cannon;
     const int WAIT_TIME = 3;
     // Start is called before the first frame update
     void Start()
@@ -24,15 +24,17 @@ public class PiggyController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        StartCoroutine();
+        StartCoroutine("ResetPiggy", 0);
     }
 
-    IEnumerator ResetPiggie()
+    void ResetPiggy()
     {
-        yield return WaitForSeconds();
-        transform.position = startPosition;
-        transform.rotation = startRotation;
+        transform.parent = cannon;
+        transform.localPosition = startPosition;
+        transform.localRotation = startRotation;
         GetComponent<Rigidbody2D>().gravityScale = 0;
-        transform.parent = transform;
+        GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0);
+        GetComponent<Rigidbody2D>().angularVelocity = 0;
+        
     }
 }
