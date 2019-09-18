@@ -8,12 +8,15 @@ public class PiggyController : MonoBehaviour
     Quaternion startRotation;
     Transform cannon;
     const int WAIT_TIME = 3;
+    public ScoreManager scoreManager;
+    public LevelManager levelManager;
+    bool resetting = false;
     // Start is called before the first frame update
     void Start()
     {
         cannon = transform.parent;
-        startPosition = transform.position;
-        startRotation = transform.rotation;
+        startPosition = transform.localPosition;
+        startRotation = transform.localRotation;
     }
 
     // Update is called once per frame
@@ -24,7 +27,13 @@ public class PiggyController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        StartCoroutine("ResetPiggy", 0);
+        scoreManager.updateScore(1);
+        if (!resetting)
+        {
+            Invoke("ResetPiggy", 3f);
+            resetting = true;
+        }        
+        
     }
 
     void ResetPiggy()
@@ -35,6 +44,8 @@ public class PiggyController : MonoBehaviour
         GetComponent<Rigidbody2D>().gravityScale = 0;
         GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0);
         GetComponent<Rigidbody2D>().angularVelocity = 0;
+        levelManager.updateLevel(1);
+        resetting = false;
         
     }
 }
