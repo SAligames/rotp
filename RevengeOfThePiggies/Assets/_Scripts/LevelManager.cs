@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelManager : Subject
 {
-    public int level = 1;
+    public int level = 0;
     public Observer displayLevel;
 
     //making the constructor private prevents others

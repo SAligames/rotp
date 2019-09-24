@@ -10,6 +10,7 @@ public class PiggyController : MonoBehaviour
     const int WAIT_TIME = 3;
     public ScoreManager scoreManager;
     public LevelManager levelManager;
+    public ChanceManager ammoManager;
     bool resetting = false;
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,7 @@ public class PiggyController : MonoBehaviour
         {
             Invoke("ResetPiggy", 3f);
             resetting = true;
+            
         }        
         
     }
@@ -46,6 +48,6 @@ public class PiggyController : MonoBehaviour
         GetComponent<Rigidbody2D>().angularVelocity = 0;
         levelManager.updateLevel(1);
         resetting = false;
-        
+        ammoManager.updateShot(1);
     }
 }

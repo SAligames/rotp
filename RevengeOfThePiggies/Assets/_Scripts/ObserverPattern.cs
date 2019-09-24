@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum NotificationType { LevelUpdated, ScoreUpdated};
+public enum NotificationType { ChanceUpdated,LevelUpdated, ScoreUpdated};
 
 public abstract class Observer : MonoBehaviour
 {

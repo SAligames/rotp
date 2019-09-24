@@ -38,6 +38,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Sky
+    uniqueID: 1533769871
+    locked: 0
+  - name: Grass
+    uniqueID: 3762659723
+    locked: 0
+  - name: Player
+    uniqueID: 2025269375
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

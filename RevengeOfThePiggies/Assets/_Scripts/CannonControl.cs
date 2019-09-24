@@ -12,6 +12,7 @@ public class CannonControl : MonoBehaviour
     const int Max_Angle = 80;
     const int Min_Angle = 5;
     
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +47,7 @@ public class CannonControl : MonoBehaviour
             piggyRB.transform.parent = null;
             piggyRB.gravityScale = 1;
             piggyRB.AddForce(direction * strength * piggyRB.mass);
+            
         }
     }
 
