@@ -5,7 +5,7 @@ using UnityEngine;
 public class CannonControl : MonoBehaviour
 {
     public Rigidbody2D piggyRB; //this is a reference to the player object
-
+    public AudioSource cannonShot;
     public Camera mainCamera;
     private Vector3 direction;
     public float strength = 50; //the scalar that defines the strength of the cannon
@@ -47,7 +47,7 @@ public class CannonControl : MonoBehaviour
             piggyRB.transform.parent = null;
             piggyRB.gravityScale = 1;
             piggyRB.AddForce(direction * strength * piggyRB.mass);
-            
+            cannonShot.Play();
         }
     }
 

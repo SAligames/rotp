@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ChanceManager : Subject
 {
@@ -19,7 +20,7 @@ public class ChanceManager : Subject
         Notify(shots, NotificationType.ChanceUpdated);
         if(shots==0)
         {
-            Debug.Log("Game Over!");
+            SceneManager.LoadScene("LoseScreen");
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Birds : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class Birds : MonoBehaviour
         BirdCount--;
         if(BirdCount==0)
         {
-            Debug.Log("You Win!");
+            SceneManager.LoadScene("WinScreen");
         }
     }
 }
